@@ -391,7 +391,7 @@ private:
 
                 for (Index j = i + 1; j < top_idx; j++) {
                     auto &current = buddies[j];
-
+                    firefly::kernel::info_logger << firefly::kernel::info_logger.format("j = %d | top_idx = %d | buddies[j] = %x\n", j, top_idx, (uint64_t)&current);
                     if (current.max_order < original.max_order && current.max_order >= suitable_order)
                         suitable_index = j;
                 }

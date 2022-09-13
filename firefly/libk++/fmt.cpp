@@ -5,6 +5,7 @@
 #include "cstdlib/cassert.h"
 #include "firefly/console/console.hpp"
 #include "libk++/cstring.hpp"
+#include <firefly/drivers/ports.hpp>
 
 namespace firefly::libkern::fmt {
 
@@ -101,6 +102,8 @@ int printf(const char* fmt, ...) {
 
     if (outLen >= sizeof(buffer))
         return -1;
+    for (int i = 0; i < outLen; i++)
+        firefly::kernel::io::outb(0xE9, buffer[i]);
 
     firefly::kernel::console::write(buffer);
     return 0;
